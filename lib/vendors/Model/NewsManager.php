@@ -51,4 +51,11 @@ abstract class NewsManager extends Manager
       throw new \RuntimeException('La news doit être validée pour être enregistrée');
     }
   }
+
+  /**
+   * Méthode permettant de modifier une news.
+   * @param $news news la news à modifier
+   * @return void
+   */
+  abstract protected function modify(News $news);
 }

@@ -27,6 +27,22 @@ class NewsController extends BackController
     $this->page->addVar('title', 'Ajout d\'une news');
   }
   
+
+  public function executeUpdate(HTTPRequest $request)
+  {
+    if ($request->postExists('auteur'))
+    {
+      $this->processForm($request);
+    }
+    else
+    {
+      $this->page->addVar('news', $this->managers->getManagerOf('News')->getUnique($request->getData('id')));
+    }
+    
+    $this->page->addVar('title', 'Modification d\'une news');
+  }
+
+
   /**
    * Méthode permettant de traiter le formulaire et d'enregistrer la news dans la BDD
    * utile à la fois pour insérer une nouvelle news (executeInsert) et modifier une news existante (executeUpdate)
