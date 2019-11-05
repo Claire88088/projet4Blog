@@ -34,6 +34,14 @@ abstract class BackController extends ApplicationComponent
     $this->$method($this->app->httpRequest());
   }
 
+  // getter
+  public function page()
+  {
+    return $this->page;
+  }
+
+
+  // setters
   public function setView($view)
   {
     if (!is_string($view) || empty($view))
@@ -45,16 +53,7 @@ abstract class BackController extends ApplicationComponent
     
     $this->page->setContentFile(__DIR__.'/../../App/'.$this->app->name().'/Modules/'.$this->module.'/Views/'.$this->view.'.php');
   }
-
   
-  // getter
-  public function page()
-  {
-    return $this->page;
-  }
-
-
-  // setters
   public function setModule($module)
   {
     if (!is_string($module) || empty($module))
@@ -73,15 +72,5 @@ abstract class BackController extends ApplicationComponent
     }
 
     $this->action = $action;
-  }
-
-  public function setView($view)
-  {
-    if (!is_string($view) || empty($view))
-    {
-      throw new \InvalidArgumentException('La vue doit être une chaine de caractères valide');
-    }
-
-    $this->view = $view;
   }
 }
