@@ -6,6 +6,9 @@ use \OCFram\HTTPRequest;
 
 class NewsController extends BackController
 {
+  /**
+   * Méthode permettant l'affichage de la liste des news
+   */
   public function executeIndex(HTTPRequest $request)
   {
     $nombreNews = $this->app->config()->get('nombre_news');
@@ -36,6 +39,9 @@ class NewsController extends BackController
     $this->page->addVar('listeNews', $listeNews);
   }
 
+  /**
+   * Méthode permettant l'affichage d'une news et de ses commentaires
+   */
   public function executeShow(HTTPRequest $request)
   {
     $news = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
@@ -47,8 +53,10 @@ class NewsController extends BackController
     
     $this->page->addVar('title', $news->titre());
     $this->page->addVar('news', $news);
+    $this->page->addVar('comments', $this->managers->getManagerOf('Comments')->getListOf($news->id()));
   } 
   
+
   public function executeInsertComment(HTTPRequest $request)
   {
     $this->page->addVar('title', 'Ajout d\'un commentaire');
