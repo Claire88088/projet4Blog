@@ -3,6 +3,7 @@ namespace App\Frontend\Modules\News;
 
 use \OCFram\BackController;
 use \OCFram\HTTPRequest;
+use \Entity\Comment;
 
 class NewsController extends BackController
 {
@@ -20,8 +21,6 @@ class NewsController extends BackController
     // On récupère le manager des news.
     $manager = $this->managers->getManagerOf('News');
     
-    // Cette ligne, vous ne pouviez pas la deviner sachant qu'on n'a pas encore touché au modèle.
-    // Contentez-vous donc d'écrire cette instruction, nous implémenterons la méthode ensuite.
     $listeNews = $manager->getList(0, $nombreNews);
     
     foreach ($listeNews as $news)
