@@ -3,6 +3,7 @@ namespace App\Backend\Modules\News;
 
 use \OCFram\BackController;
 use \OCFram\HTTPRequest;
+use \Entity\News;
 
 class NewsController extends BackController
 {
