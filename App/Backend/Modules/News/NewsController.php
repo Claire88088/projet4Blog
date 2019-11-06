@@ -23,10 +23,7 @@ class NewsController extends BackController
   // gestion des news
   public function executeInsert(HTTPRequest $request)
   {
-    if ($request->postExists('auteur'))
-    {
-      $this->processForm($request);
-    }
+    $this->processForm($request);
     
     $this->page->addVar('title', 'Ajout d\'une news');
   }
@@ -34,14 +31,7 @@ class NewsController extends BackController
 
   public function executeUpdate(HTTPRequest $request)
   {
-    if ($request->postExists('auteur'))
-    {
-      $this->processForm($request);
-    }
-    else
-    {
-      $this->page->addVar('news', $this->managers->getManagerOf('News')->getUnique($request->getData('id')));
-    }
+    $this->processForm($request);
     
     $this->page->addVar('title', 'Modification d\'une news');
   }
@@ -52,7 +42,7 @@ class NewsController extends BackController
    * utile à la fois pour insérer une nouvelle news (executeInsert) et modifier une news existante (executeUpdate)
    */
   public function processForm(HTTPRequest $request)
-  {
+  { 
     if ($request->method() == 'POST')
     {
       $news = new News([
@@ -72,6 +62,7 @@ class NewsController extends BackController
       if ($request->getExists('id'))
       {
         $news = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
+        var_dump($news);
       }
       else
       {
@@ -137,7 +128,7 @@ class NewsController extends BackController
     if ($formHandler->process())
     {
       $this->app->user()->setFlash('Le commentaire a bien été modifié !'); 
-      $this->app->httpResponse()->redirect('/admin/'); //redirect('/news-'.$request->postData('news').'.html');
+      $this->app->httpResponse()->redirect('/admin/');
     }
      
     $this->page->addVar('form', $form->createView());
