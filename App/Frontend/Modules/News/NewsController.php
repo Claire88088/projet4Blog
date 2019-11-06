@@ -5,6 +5,8 @@ use \OCFram\BackController;
 use \OCFram\HTTPRequest;
 use \Entity\Comment;
 use \OCFram\Form;
+use OCFram\MaxLengthValidator;
+use OCFram\NotNullValidator;
 use \OCFram\StringField;
 use \OCFram\TextField;
 
@@ -81,6 +83,10 @@ class NewsController extends BackController
       'label' => 'Auteur',
       'name' => 'auteur',
       'maxlength' => 50,
+      'validators' => [
+        new MaxLengthValidator('L\'auteur spécifié est trop long (50 caractères maximum)', 50),
+        new NotNullValidator('Merci de spécifier l\'auteur du commentaire'),
+      ]
     ]))
     ->add(new TextField([
       'label' => 'Contenu',
