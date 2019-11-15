@@ -6,10 +6,10 @@ use \OCFram\Entity;
 class News extends Entity
 {
   protected $auteur,
-            $titre,
-            $contenu,
-            $dateAjout,
-            $dateModif;
+            $title,
+            $content,
+            $creationDate,
+            $updateDate;
 
   const AUTEUR_INVALIDE = 1;
   const TITRE_INVALIDE = 2;
@@ -17,7 +17,7 @@ class News extends Entity
 
   public function isValid()
   {
-    return !(empty($this->auteur) || empty($this->titre) || empty($this->contenu));
+    return !(empty($this->title) || empty($this->content));
   }
 
 
@@ -32,34 +32,34 @@ class News extends Entity
     $this->auteur = $auteur;
   }
 
-  public function setTitre($titre)
+  public function setTitle($title)
   {
-    if (!is_string($titre) || empty($titre))
+    if (!is_string($title) || empty($title))
     {
       $this->erreurs[] = self::TITRE_INVALIDE;
     }
 
-    $this->titre = $titre;
+    $this->title = $title;
   }
 
-  public function setContenu($contenu)
+  public function setContent($content)
   {
-    if (!is_string($contenu) || empty($contenu))
+    if (!is_string($content) || empty($content))
     {
       $this->erreurs[] = self::CONTENU_INVALIDE;
     }
 
-    $this->contenu = $contenu;
+    $this->content = $content;
   }
 
-  public function setDateAjout(\DateTime $dateAjout)
+  public function setCreationDate(\DateTime $creationDate)
   {
-    $this->dateAjout = $dateAjout;
+    $this->creationDate = $creationDate;
   }
 
-  public function setDateModif(\DateTime $dateModif)
+  public function setUpdateDate(\DateTime $updateDate)
   {
-    $this->dateModif = $dateModif;
+    $this->updateDate = $updateDate;
   }
 
   // getters
@@ -68,23 +68,23 @@ class News extends Entity
     return $this->auteur;
   }
 
-  public function titre()
+  public function title()
   {
-    return $this->titre;
+    return $this->title;
   }
 
-  public function contenu()
+  public function content()
   {
-    return $this->contenu;
+    return $this->content;
   }
 
-  public function dateAjout()
+  public function creationDate()
   {
-    return $this->dateAjout;
+    return $this->creationDate;
   }
 
-  public function dateModif()
+  public function updateDate()
   {
-    return $this->dateModif;
+    return $this->updateDate;
   }
 }

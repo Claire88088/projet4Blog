@@ -7,7 +7,7 @@ class NewsManagerPDO extends NewsManager
 {
   public function getList($debut = -1, $limite = -1)
   {
-    $sql = 'SELECT id, auteur, titre, contenu, dateAjout, dateModif FROM news ORDER BY id DESC';
+    $sql = 'SELECT id, title, content, creation_date, update_date FROM news ORDER BY id DESC';
     
     if ($debut != -1 || $limite != -1)
     {
@@ -21,8 +21,8 @@ class NewsManagerPDO extends NewsManager
     
     foreach ($listeNews as $news)
     {
-      $news->setDateAjout(new \DateTime($news->dateAjout()));
-      $news->setDateModif(new \DateTime($news->dateModif()));
+      $news->setCreationDate(new \DateTime($news->creationDate()));
+      $news->setUpdateDate(new \DateTime($news->updateDate()));
     }
     
     $requete->closeCursor();
@@ -33,7 +33,7 @@ class NewsManagerPDO extends NewsManager
   
   public function getUnique($id)
   {
-    $requete = $this->dao->prepare('SELECT id, auteur, titre, contenu, dateAjout, dateModif FROM news WHERE id = :id');
+    $requete = $this->dao->prepare('SELECT id, title, content, creation_date, update_date FROM news WHERE id = :id');
     $requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
     $requete->execute();
     
@@ -41,8 +41,8 @@ class NewsManagerPDO extends NewsManager
     
     if ($news = $requete->fetch())
     {
-      $news->setDateAjout(new \DateTime($news->dateAjout()));
-      $news->setDateModif(new \DateTime($news->dateModif()));
+      $news->setCreationDate(new \DateTime($news->creationDate()));
+      $news->setUpdateDate(new \DateTime($news->updateDate()));
       
       return $news;
     }
@@ -59,11 +59,10 @@ class NewsManagerPDO extends NewsManager
 
   protected function add(News $news)
   {
-    $requete = $this->dao->prepare('INSERT INTO news SET auteur = :auteur, titre = :titre, contenu = :contenu, dateAjout = NOW(), dateModif = NOW()');
+    $requete = $this->dao->prepare('INSERT INTO news SET title = :title, content = :content, creation_date = NOW(), update_date = NOW()');
     
-    $requete->bindValue(':titre', $news->titre());
-    $requete->bindValue(':auteur', $news->auteur());
-    $requete->bindValue(':contenu', $news->contenu());
+    $requete->bindValue(':title', $news->title());
+    $requete->bindValue(':content', $news->content());
     
     $requete->execute();
   }
@@ -71,11 +70,10 @@ class NewsManagerPDO extends NewsManager
 
   protected function modify(News $news)
   {
-    $requete = $this->dao->prepare('UPDATE news SET auteur = :auteur, titre = :titre, contenu = :contenu, dateModif = NOW() WHERE id = :id');
+    $requete = $this->dao->prepare('UPDATE news SET title = :title, content = :content, update_date = NOW() WHERE id = :id');
     
-    $requete->bindValue(':titre', $news->titre());
-    $requete->bindValue(':auteur', $news->auteur());
-    $requete->bindValue(':contenu', $news->contenu());
+    $requete->bindValue(':title', $news->title());
+    $requete->bindValue(':content', $news->content());
     $requete->bindValue(':id', $news->id(), \PDO::PARAM_INT);
     
     $requete->execute();

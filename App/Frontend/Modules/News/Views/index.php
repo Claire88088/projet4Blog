@@ -6,15 +6,15 @@ foreach ($listeNews as $news)
     <article class="post">
     <header>
       <div class="title">
-        <h2><a href="single.html"><?= $news['titre'] ?></a></h2>
+        <h2><a href="single.html"><?= $news['title'] ?></a></h2>
         <p></p>
       </div>
       <div class="meta">
-        <time class="published" datetime="2015-11-01">Le <?= $news['dateAjout']->format('d/m/Y à H\hi') ?></time>
+        <time class="published" datetime="2015-11-01">Le <?= $news['creationDate']->format('d/m/Y à H\hi') ?></time>
       </div>
     </header>
 
-    <p><?= nl2br($news['contenu']) ?></p>
+    <p><?= nl2br($news['content']) ?></p>
     
     <footer>
       <ul class="actions">
