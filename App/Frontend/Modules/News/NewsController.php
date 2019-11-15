@@ -52,7 +52,7 @@ class NewsController extends BackController
       $this->app->httpResponse()->redirect404();
     }
     
-    $this->page->addVar('title', $news->titre());
+    $this->page->addVar('title', $news->title());
     $this->page->addVar('news', $news);
     $this->page->addVar('comments', $this->managers->getManagerOf('Comments')->getListOf($news->id()));
   } 

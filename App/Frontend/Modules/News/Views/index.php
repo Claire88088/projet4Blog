@@ -6,7 +6,7 @@ foreach ($listeNews as $news)
     <article class="post">
     <header>
       <div class="title">
-        <h2><a href="single.html"><?= $news['title'] ?></a></h2>
+        <h2><a href="news-<?= $news['id'] ?>.html"><?= $news['title'] ?></a></h2>
         <p></p>
       </div>
       <div class="meta">
@@ -18,7 +18,7 @@ foreach ($listeNews as $news)
     
     <footer>
       <ul class="actions">
-        <li><a href="single.html" class="button large">Lire la suite...</a></li>
+        <li><a href="news-<?= $news['id'] ?>.html" class="button large">Lire la suite...</a></li>
       </ul>
     </footer>
   </article>

@@ -8,7 +8,7 @@
 
 <head>
   <title>
-    <?= isset($title) ? $title : 'Mon super site' ?>
+    <?= isset($title) ? $title : 'Blog' ?>
   </title>
 
   <meta charset="utf-8" />
