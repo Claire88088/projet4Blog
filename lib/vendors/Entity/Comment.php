@@ -5,17 +5,19 @@ use \OCFram\Entity;
 
 class Comment extends Entity
 {
-  protected $news,
-            $auteur,
-            $contenu,
-            $date;
+  protected $news, // id de la News
+            $author,
+            $content,
+            $creationDate,
+            $moderationDate,
+            $isReported;
 
   const AUTEUR_INVALIDE = 1;
   const CONTENU_INVALIDE = 2;
 
   public function isValid()
   {
-    return !(empty($this->auteur) || empty($this->contenu));
+    return !(empty($this->author) || empty($this->content));
   }
 
 
@@ -25,29 +27,29 @@ class Comment extends Entity
     $this->news = (int) $news;
   }
 
-  public function setAuteur($auteur)
+  public function setAuthor($author)
   {
-    if (!is_string($auteur) || empty($auteur))
+    if (!is_string($author) || empty($author))
     {
       $this->erreurs[] = self::AUTEUR_INVALIDE;
     }
 
-    $this->auteur = $auteur;
+    $this->author = $author;
   }
 
-  public function setContenu($contenu)
+  public function setContent($content)
   {
-    if (!is_string($contenu) || empty($contenu))
+    if (!is_string($content) || empty($content))
     {
       $this->erreurs[] = self::CONTENU_INVALIDE;
     }
 
-    $this->contenu = $contenu;
+    $this->content = $content;
   }
 
-  public function setDate(\DateTime $date)
+  public function setCreationDate(\DateTime $creationDate)
   {
-    $this->date = $date;
+    $this->creationDate = $creationDate;
   }
 
 
@@ -57,18 +59,18 @@ class Comment extends Entity
     return $this->news;
   }
 
-  public function auteur()
+  public function author()
   {
-    return $this->auteur;
+    return $this->author;
   }
 
-  public function contenu()
+  public function content()
   {
-    return $this->contenu;
+    return $this->content;
   }
 
-  public function date()
+  public function creationDate()
   {
-    return $this->date;
+    return $this->creationDate;
   }
 }
