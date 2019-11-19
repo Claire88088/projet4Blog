@@ -4,29 +4,7 @@ namespace Model;
 use \Entity\Comment;
 
 class CommentsManagerPDO extends CommentsManager
-{
-  public function getReportedList()
-  {
-    $q = $this->dao->prepare('SELECT id, news_id, author, content, creation_date FROM comments WHERE is_reported = 1');
-    $q->execute();
-
-    $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
-
-    $reportedComments = $q->fetchAll();
-    
-    foreach ($reportedComments as $reportedComment)
-    {
-      $reportedComment->setCreationDate(new \DateTime($reportedComment->creationDate()));
-    }
-    
-    return $reportedComments;
-  }
-
-  public function countReported()
-  {
-    return $this->dao->query('SELECT COUNT(*) FROM comments WHERE is_reported = 1')->fetchColumn();
-  }
-  
+{ 
   // Select
   public function getListOf($news)
   {
@@ -62,10 +40,27 @@ class CommentsManagerPDO extends CommentsManager
     return $q->fetch();
   }
 
+  public function getReportedList()
+  {
+    $q = $this->dao->prepare('SELECT id, news_id, author, content, creation_date FROM comments WHERE is_reported = 1');
+    $q->execute();
+
+    $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
+
+    $reportedComments = $q->fetchAll();
+    
+    foreach ($reportedComments as $reportedComment)
+    {
+      $reportedComment->setCreationDate(new \DateTime($reportedComment->creationDate()));
+    }
+    
+    return $reportedComments;
+  }
+
   // Create
   protected function add(Comment $comment)
   {
-    $q = $this->dao->prepare('INSERT INTO comments SET news = :news, author = :author, content = :content, creation_date = NOW()');
+    $q = $this->dao->prepare('INSERT INTO comments SET news_id = :news, author = :author, content = :content, creation_date = NOW()');
     
     $q->bindValue(':news', $comment->news(), \PDO::PARAM_INT);
     $q->bindValue(':author', $comment->author());
@@ -99,5 +94,11 @@ class CommentsManagerPDO extends CommentsManager
   public function deleteFromNews($news)
   {
     $this->dao->exec('DELETE FROM comments WHERE news = '.(int) $news);
+  }
+
+  // Count
+  public function countReported()
+  {
+    return $this->dao->query('SELECT COUNT(*) FROM comments WHERE is_reported = 1')->fetchColumn();
   }
 }
