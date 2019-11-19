@@ -7,7 +7,7 @@
   <?php
   foreach ($newsList as $news)
   {
-    echo '<tr><td>', $news['title'], '</td><td>le ', $news['creationDate']->format('d/m/Y à H\hi'), '</td><td>', ($news['creationDate'] == $news['updateDate'] ? '-' : 'le '.$news['dateModif']->format('d/m/Y à H\hi')), '</td><td><a href="news-update-', $news['id'], '.html"><img src="/images/update.png" alt="Modifier" /></a> <a href="news-delete-', $news['id'], '.html"><img src="/images/delete.png" alt="Supprimer" /></a></td></tr>', "\n";
+    echo '<tr><td>', $news['title'], '</td><td>le ', $news['creationDate']->format('d/m/Y à H\hi'), '</td><td>', ($news['creationDate'] == $news['updateDate'] ? '-' : 'le '.$news['updateDate']->format('d/m/Y à H\hi')), '</td><td><a href="news-update-', $news['id'], '.html"><img src="/images/update.png" alt="Modifier" /></a> <a href="news-delete-', $news['id'], '.html"><img src="/images/delete.png" alt="Supprimer" /></a></td></tr>', "\n";
   }
   ?>
   </table>
