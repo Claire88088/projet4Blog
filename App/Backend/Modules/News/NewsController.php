@@ -12,7 +12,7 @@ class NewsController extends BackController
 {
   public function executeIndex(HTTPRequest $request)
   {
-    $this->page->addVar('title', 'Gestion des news');
+    $this->page->addVar('title', 'Gestion des épisodes et des commentaires');
 
     $manager = $this->managers->getManagerOf('News');
 
@@ -30,7 +30,7 @@ class NewsController extends BackController
   {
     $this->processForm($request);
     
-    $this->page->addVar('title', 'Ajout d\'une news');
+    $this->page->addVar('title', 'Ajout d\'un nouvel épisode');
   }
   
 
