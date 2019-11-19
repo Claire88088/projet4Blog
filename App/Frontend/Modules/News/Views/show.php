@@ -3,7 +3,7 @@
 <p><?= nl2br($news['content']) ?></p>
 
 <?php if ($news['creationDate'] != $news['updateDate']) { ?>
-  <p style="text-align: right;"><small><em>Modifiée le <?= $news['updateDate']->format('d/m/Y à H\hi') ?></em></small></p>
+  <p style="text-align: right;"><small><em>Modifié le <?= $news['updateDate']->format('d/m/Y à H\hi') ?></em></small></p>
 <?php } ?>
 
 <?php
