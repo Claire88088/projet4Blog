@@ -16,15 +16,13 @@ class NewsController extends BackController
 
     $manager = $this->managers->getManagerOf('News');
 
-    $this->page->addVar('listeNews', $manager->getList());
-    $this->page->addVar('nombreNews', $manager->count());
+    $this->page->addVar('newsList', $manager->getList());
+    $this->page->addVar('newsNumber', $manager->count());
 
     $manager = $this->managers->getManagerOf('Comments');
 
-    $this->page->addVar('listeReportedComments', $manager->getReportedList());
-    $this->page->addVar('numberReportedComments', $manager->countReported());
-
-
+    $this->page->addVar('reportedCommentsList', $manager->getReportedList());
+    $this->page->addVar('reportedCommentsNumber', $manager->countReported());
   }
 
   // gestion des news
@@ -53,9 +51,9 @@ class NewsController extends BackController
     if ($request->method() == 'POST')
     {
       $news = new News([
-        'auteur' => $request->postData('auteur'),
-        'titre' => $request->postData('titre'),
-        'contenu' => $request->postData('contenu')
+        'author' => $request->postData('auteur'),
+        'title' => $request->postData('titre'),
+        'content' => $request->postData('contenu')
       ]);
 
       if ($request->getExists('id'))
@@ -115,8 +113,8 @@ class NewsController extends BackController
     {
       $comment = new Comment([
         'id' => $request->getData('id'),
-        'auteur' => $request->postData('pseudo'),
-        'contenu' => $request->postData('contenu')
+        'author' => $request->postData('pseudo'),
+        'content' => $request->postData('contenu')
       ]);
     }
     else

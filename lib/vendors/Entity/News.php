@@ -5,7 +5,7 @@ use \OCFram\Entity;
 
 class News extends Entity
 {
-  protected $auteur,
+  protected $author,
             $title,
             $content,
             $creationDate,
@@ -22,14 +22,14 @@ class News extends Entity
 
 
   // setters
-  public function setAuteur($auteur)
+  public function setAuthor($author)
   {
-    if (!is_string($auteur) || empty($auteur))
+    if (!is_string($author) || empty($author))
     {
       $this->erreurs[] = self::AUTEUR_INVALIDE;
     }
 
-    $this->auteur = $auteur;
+    $this->author = $author;
   }
 
   public function setTitle($title)
@@ -63,9 +63,9 @@ class News extends Entity
   }
 
   // getters
-  public function auteur()
+  public function author()
   {
-    return $this->auteur;
+    return $this->author;
   }
 
   public function title()
