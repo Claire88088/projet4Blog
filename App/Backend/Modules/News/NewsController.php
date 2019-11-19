@@ -38,7 +38,7 @@ class NewsController extends BackController
   {
     $this->processForm($request);
     
-    $this->page->addVar('title', 'Modification d\'une news');
+    $this->page->addVar('title', 'Modification d\'un épisode');
   }
 
 
@@ -51,9 +51,9 @@ class NewsController extends BackController
     if ($request->method() == 'POST')
     {
       $news = new News([
-        'author' => $request->postData('auteur'),
-        'title' => $request->postData('titre'),
-        'content' => $request->postData('contenu')
+        'author' => $request->postData('author'),
+        'title' => $request->postData('title'),
+        'content' => $request->postData('content')
       ]);
 
       if ($request->getExists('id'))

@@ -29,7 +29,7 @@
 
     <!-- Main -->
     <div id="main">
-      <section id="main">
+      <section>
         <?php if ($user->hasFlash()) echo '<p style="text-align: center;">', $user->getFlash(), '</p>'; ?>
 
         <?= $content ?>
