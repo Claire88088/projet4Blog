@@ -18,6 +18,13 @@ class NewsController extends BackController
 
     $this->page->addVar('listeNews', $manager->getList());
     $this->page->addVar('nombreNews', $manager->count());
+
+    $manager = $this->managers->getManagerOf('Comments');
+
+    $this->page->addVar('listeReportedComments', $manager->getReportedList());
+    $this->page->addVar('numberReportedComments', $manager->countReported());
+
+
   }
 
   // gestion des news

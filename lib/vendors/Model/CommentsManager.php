@@ -64,4 +64,10 @@ abstract class CommentsManager extends Manager
    * @return void
    */
   abstract public function deleteFromNews($news);
+
+  /**
+   * Méthode renvoyant le nombre de commentaires signalés total.
+   * @return int
+   */
+  abstract public function countReported();
 }

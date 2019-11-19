@@ -5,6 +5,28 @@ use \Entity\Comment;
 
 class CommentsManagerPDO extends CommentsManager
 {
+  public function getReportedList()
+  {
+    $q = $this->dao->prepare('SELECT id, news_id, author, content, creation_date FROM comments WHERE is_reported = 1');
+    $q->execute();
+
+    $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
+
+    $reportedComments = $q->fetchAll();
+    
+    foreach ($reportedComments as $reportedComment)
+    {
+      $reportedComment->setCreationDate(new \DateTime($reportedComment->creationDate()));
+    }
+    
+    return $reportedComments;
+  }
+
+  public function countReported()
+  {
+    return $this->dao->query('SELECT COUNT(*) FROM comments WHERE is_reported = 1')->fetchColumn();
+  }
+  
   // Select
   public function getListOf($news)
   {
