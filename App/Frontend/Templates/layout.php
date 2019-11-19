@@ -28,19 +28,13 @@
         <ul>
           <li><a href="/">Accueil</a></li>
           <?php if ($user->isAuthenticated()) { ?>
-            <li><a href="/admin/">Admin</a></li>
-            <li><a href="/admin/news-insert.html">Ajouter une news</a></li>
+            <li><a href="/admin/">Accueil administration</a></li>
+            <li><a href="/admin/news-insert.html">Ajouter un nouvel épisode</a></li>
           <?php } ?>
         </ul>
       </nav>
       <nav class="main">
         <ul>
-          <li class="search">
-            <a class="fa-search" href="#search">Search</a>
-            <form id="search" method="get" action="#">
-              <input type="text" name="query" placeholder="Search" />
-            </form>
-          </li>
           <li class="menu">
             <a class="fa-bars" href="#menu">Menu</a>
           </li>
@@ -50,13 +44,6 @@
 
     <!-- Menu -->
     <section id="menu">
-
-      <!-- Search -->
-      <section>
-        <form class="search" method="get" action="#">
-          <input type="text" name="query" placeholder="Search" />
-        </form>
-      </section>
 
       <!-- Links -->
       <section>
@@ -70,14 +57,12 @@
           <?php if ($user->isAuthenticated()) { ?>
           <li>
             <a href="/admin/">
-              <h3>Accueil de l'administration du site</h3>
-              <p>Administration du blog</p>
+              <h3>Accueil administration</h3>
             </a>
           </li>
           <li>
             <a href="/admin/news-insert.html">
-              <h3>Ajouter une news</h3>
-              <p>No comment</p>
+              <h3>Ajouter un nouvel épisode</h3>
             </a>
           </li>
           <?php } ?>
@@ -87,7 +72,7 @@
       <!-- Actions -->
       <section>
         <ul class="actions stacked">
-          <li><a href="/admin/" class="button large fit">Accès à l'administration</a></li>
+          <li><a href="/admin/" class="button large fit">Connexion à l'administration</a></li>
         </ul>
       </section>
 

@@ -23,8 +23,7 @@
 
     <!-- Header -->
     <header id="header">
-      <h1><a href="/">Zone admin</a></h1>
-      
+      <h1><a href="/">Retour à l'accueil du site</a></h1>
     </header>
 
 
@@ -35,12 +34,6 @@
 
         <?= $content ?>
       </section>
-
-      <!-- Pagination -->
-      <ul class="actions pagination">
-        <li><a href="" class="disabled button large previous">Page précédente</a></li>
-        <li><a href="#" class="button large next">Page suivante</a></li>
-      </ul>
     </div>
   </div>
 
