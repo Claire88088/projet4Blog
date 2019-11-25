@@ -84,7 +84,7 @@ class NewsController extends BackController
 
     if ($formHandler->process())
     {
-      $this->app->user()->setFlash($news->isNew() ? 'La news a bien été ajoutée !' : 'La news a bien été modifiée !');
+      $this->app->user()->setFlash($news->isNew() ? 'L\'épisode a bien été ajouté !' : 'L\'épisode a bien été modifié !');
       $this->app->httpResponse()->redirect('/admin/');
     }
 
@@ -99,7 +99,7 @@ class NewsController extends BackController
     $this->managers->getManagerOf('News')->delete($newsId);
     $this->managers->getManagerOf('Comments')->deleteFromNews($newsId);
 
-    $this->app->user()->setFlash('La news a bien été supprimée !');
+    $this->app->user()->setFlash('L\'épisode a bien été supprimé !');
 
     $this->app->httpResponse()->redirect('.');
   }
