@@ -5,9 +5,9 @@ use \OCFram\BackController;
 use \OCFram\HTTPRequest;
 use \Entity\News;
 use \Entity\Comment;
-use FormBuilder\CommentFormBuilder;
-use FormBuilder\NewsFormBuilder;
-use OCFram\FormHandler;
+use \FormBuilder\CommentFormBuilder;
+use \FormBuilder\NewsFormBuilder;
+use \OCFram\FormHandler;
 
 class NewsController extends BackController
 {
@@ -109,13 +109,13 @@ class NewsController extends BackController
   public function executeUpdateComment(HTTPRequest $request)
   {
     $this->page->addVar('title', 'Modification d\'un commentaire');
-    
+   
     if ($request->method() == 'POST')
     {
       $comment = new Comment([
         'id' => $request->getData('id'),
-        'author' => $request->postData('pseudo'),
-        'content' => $request->postData('contenu')
+        'author' => $request->postData('author'),
+        'content' => $request->postData('content')
       ]);
     }
     else
