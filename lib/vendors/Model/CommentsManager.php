@@ -76,4 +76,11 @@ abstract class CommentsManager extends Manager
    * @return int
    */
   abstract public function countReported();
+
+  /** 
+   * Méthode permettant de signaler un commentaire
+   * @param $id L'identifiant du commentaire à signaler
+   * @return void
+   */
+  abstract public function report($id);
 }

@@ -91,4 +91,18 @@ class NewsController extends BackController
     $this->page->addVar('form', $form->createView());
     $this->page->addVar('title', 'Ajout d\'un commentaire');
   }
+
+  public function executeReportComment(HTTPRequest $request)
+  {
+    // récupération de l'id du comment à signaler
+    $id = $request->getData('comment_id');
+    // modification de is_reported du comment stocké en BDD : Manager->report($id)
+    $this->managers->getManagerOf('Comments')->report($id);
+
+    // phrase d'info : Le commentaire a bien été signalé
+    $this->app->user()->setFlash('Le commentaire a bien été signalé, merci !');
+    
+    // redirection vers la page news-id.html
+    $this->app->httpResponse()->redirect('news-'.$request->getData('news').'.html');
+  }
 }

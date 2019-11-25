@@ -101,4 +101,16 @@ class CommentsManagerPDO extends CommentsManager
   {
     return $this->dao->query('SELECT COUNT(*) FROM comments WHERE is_reported = 1')->fetchColumn();
   }
+
+  // Signaler
+  public function report($id)
+  {
+    // 'UPDATE comments SET id_reported = true WHERE id= '.(int $id);
+    $q = $this->dao->prepare('UPDATE comments SET id_reported = :is_reported WHERE id = :id');
+  
+    $q->bindValue(':is_reported', true);
+    $q->bindValue(':id', $id, \PDO::PARAM_INT);
+
+    $q->execute();
+  }
 }
