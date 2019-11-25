@@ -93,7 +93,7 @@ class CommentsManagerPDO extends CommentsManager
 
   public function deleteFromNews($news)
   {
-    $this->dao->exec('DELETE FROM comments WHERE news = '.(int) $news);
+    $this->dao->exec('DELETE FROM comments WHERE news_id = '.(int) $news);
   }
 
   // Count
