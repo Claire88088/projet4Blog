@@ -7,7 +7,7 @@ class NewsManagerPDO extends NewsManager
 {
   public function getList($debut = -1, $limite = -1)
   {
-    $sql = 'SELECT id, title, content, creation_date, update_date FROM news ORDER BY id DESC';
+    $sql = 'SELECT id, title, content, creationDate, updateDate FROM news ORDER BY id DESC';
     
     if ($debut != -1 || $limite != -1)
     {
@@ -33,7 +33,7 @@ class NewsManagerPDO extends NewsManager
   
   public function getUnique($id)
   {
-    $requete = $this->dao->prepare('SELECT id, title, content, creation_date, update_date FROM news WHERE id = :id');
+    $requete = $this->dao->prepare('SELECT id, title, content, creationDate, updateDate FROM news WHERE id = :id');
     $requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
     $requete->execute();
     
@@ -59,7 +59,7 @@ class NewsManagerPDO extends NewsManager
 
   protected function add(News $news)
   {
-    $requete = $this->dao->prepare('INSERT INTO news SET title = :title, content = :content, creation_date = NOW(), update_date = NOW()');
+    $requete = $this->dao->prepare('INSERT INTO news SET title = :title, content = :content, creationDate = NOW(), updateDate = NOW()');
     
     $requete->bindValue(':title', $news->title());
     $requete->bindValue(':content', $news->content());
@@ -70,7 +70,7 @@ class NewsManagerPDO extends NewsManager
 
   protected function modify(News $news)
   {
-    $requete = $this->dao->prepare('UPDATE news SET title = :title, content = :content, update_date = NOW() WHERE id = :id');
+    $requete = $this->dao->prepare('UPDATE news SET title = :title, content = :content, updateDate = NOW() WHERE id = :id');
     
     $requete->bindValue(':title', $news->title());
     $requete->bindValue(':content', $news->content());

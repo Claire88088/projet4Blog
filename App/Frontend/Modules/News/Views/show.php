@@ -22,7 +22,7 @@ foreach ($comments as $comment)
     Posté par <strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['creationDate']->format('d/m/Y à H\hi') ?>
     <!-- si le commentaire est déjà signalé : affiche est signalé sinon : lien pour le signaler -->
     id du commentaire : <?= $comment['id'] ?>
-    - <a href="/signaler-<?= $comment['id'] ?>.html">Signaler</a> |
+    - <a href="/signaler-<?= $comment['id'] ?>-news-<?= $news['id'] ?>.html">Signaler</a> |
     <?php if ($user->isAuthenticated()) { ?>
       <a href="admin/comment-update-<?= $comment['id'] ?>.html">Modifier</a> |
       <a href="admin/comment-delete-<?= $comment['id'] ?>.html">Supprimer</a>

@@ -96,6 +96,7 @@ class NewsController extends BackController
   {
     // récupération de l'id du comment à signaler
     $id = $request->getData('comment_id');
+
     // modification de is_reported du comment stocké en BDD : Manager->report($id)
     $this->managers->getManagerOf('Comments')->report($id);
 
@@ -103,6 +104,9 @@ class NewsController extends BackController
     $this->app->user()->setFlash('Le commentaire a bien été signalé, merci !');
     
     // redirection vers la page news-id.html
-    $this->app->httpResponse()->redirect('news-'.$request->getData('news').'.html');
+    echo '<pre>';
+var_dump($request->getData('news_id'));
+echo '</pre>';
+    $this->app->httpResponse()->redirect('news-'.$request->getData('news_id').'.html');
   }
 }
