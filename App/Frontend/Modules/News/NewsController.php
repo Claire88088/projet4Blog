@@ -104,9 +104,6 @@ class NewsController extends BackController
     $this->app->user()->setFlash('Le commentaire a bien été signalé, merci !');
     
     // redirection vers la page news-id.html
-    echo '<pre>';
-var_dump($request->getData('news_id'));
-echo '</pre>';
     $this->app->httpResponse()->redirect('news-'.$request->getData('news_id').'.html');
   }
 }

@@ -52,6 +52,14 @@ class Comment extends Entity
     $this->creationDate = $creationDate;
   }
 
+  public function setIsReported($isReported)
+  {
+    if (($isReported === 0) || ($isReported === 1))
+    {
+      $this->isReported = $isReported;
+    }
+  }
+
 
   // getters
   public function news()
@@ -72,5 +80,10 @@ class Comment extends Entity
   public function creationDate()
   {
     return $this->creationDate;
+  }
+
+  public function isReported()
+  {
+    return $this->isReported;
   }
 }

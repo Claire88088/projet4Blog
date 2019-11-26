@@ -13,7 +13,7 @@ class CommentsManagerPDO extends CommentsManager
       throw new \InvalidArgumentException('L\'identifiant de la news passé doit être un nombre entier valide');
     }
     
-    $q = $this->dao->prepare('SELECT id, news_id, author, content, creationDate FROM comments WHERE news_id = :news');
+    $q = $this->dao->prepare('SELECT id, news_id, author, content, creationDate, isReported FROM comments WHERE news_id = :news ORDER BY creationDate DESC');
     $q->bindValue(':news', $news, \PDO::PARAM_INT);
     $q->execute();
     
@@ -42,7 +42,7 @@ class CommentsManagerPDO extends CommentsManager
 
   public function getReportedList()
   {
-    $q = $this->dao->prepare('SELECT id, news_id, author, content, creationDate FROM comments WHERE is_reported = 1');
+    $q = $this->dao->prepare('SELECT id, news_id, author, content, creationDate FROM comments WHERE isReported = 1 ORDER BY creationDate DESC');
     $q->execute();
 
     $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
@@ -99,14 +99,14 @@ class CommentsManagerPDO extends CommentsManager
   // Count
   public function countReported()
   {
-    return $this->dao->query('SELECT COUNT(*) FROM comments WHERE is_reported = 1')->fetchColumn();
+    return $this->dao->query('SELECT COUNT(*) FROM comments WHERE isReported = 1')->fetchColumn();
   }
 
   // Signaler
   public function report($id)
   {
     // 'UPDATE comments SET id_reported = true WHERE id= '.(int $id);
-    $this->dao->exec('UPDATE comments SET is_reported = 1 WHERE id = '.(int) $id);
+    $this->dao->exec('UPDATE comments SET isReported = 1 WHERE id = '.(int) $id);
   
   }
 }
