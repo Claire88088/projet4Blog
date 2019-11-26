@@ -83,4 +83,11 @@ abstract class CommentsManager extends Manager
    * @return void
    */
   abstract public function report($id);
+
+  /**
+   * Méthode permettant de modérer un commentaire
+   * @param $id L'identifiant du commentaire à modérer
+   * @return void
+   */
+  abstract public function moderate($id);
 }

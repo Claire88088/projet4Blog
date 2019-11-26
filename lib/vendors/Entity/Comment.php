@@ -52,6 +52,11 @@ class Comment extends Entity
     $this->creationDate = $creationDate;
   }
 
+  public function setModerationDate(\DateTime $moderationDate)
+  {
+    $this->moderationDate = $moderationDate;
+  }
+
   public function setIsReported($isReported)
   {
     if (($isReported === 0) || ($isReported === 1))
@@ -80,6 +85,11 @@ class Comment extends Entity
   public function creationDate()
   {
     return $this->creationDate;
+  }
+
+  public function moderationDate()
+  {
+    return $this->moderationDate;
   }
 
   public function isReported()

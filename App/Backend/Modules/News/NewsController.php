@@ -147,4 +147,13 @@ class NewsController extends BackController
     
     $this->app->httpResponse()->redirect('.');
   }
+
+  public function executeModerateComment(HTTPRequest $request)
+  {
+    $this->managers->getManagerOf('Comments')->moderate($request->getData('id'));
+
+    $this->app->user()->setFlash('Le commentaire a bien été modéré !');
+    
+    $this->app->httpResponse()->redirect('.');
+  }
 }

@@ -19,20 +19,37 @@ foreach ($comments as $comment)
 ?>
 <fieldset>
   <legend>
-    Posté par <strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['creationDate']->format('d/m/Y à H\hi') ?> 
+    Posté par <strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['creationDate']->format('d/m/Y à H\hi') ?> -
     
     <?php if ($comment['isReported'] === '1') { ?>
-    - <em>Commentaire signalé</em> 
-    <?php }
-    else { ?>
-      - <a href="/signaler-<?= $comment['id'] ?>-news-<?= $news['id'] ?>.html">Signaler</a> 
-    <?php } ?>
+      <em>Commentaire signalé</em> -
+    <?php 
+    }
+    else 
+    { 
+      if (!isset($comment['moderationDate'])) {
+    ?>
+      <a href="/signaler-<?= $comment['id'] ?>-news-<?= $news['id'] ?>.html">Signaler</a> |
+    <?php 
+      }
+    } 
+    ?>
     <?php if ($user->isAuthenticated()) { ?>
-      | <a href="admin/comment-update-<?= $comment['id'] ?>.html">Modifier</a> |
+      <a href="admin/comment-update-<?= $comment['id'] ?>.html">Modifier</a> |
       <a href="admin/comment-delete-<?= $comment['id'] ?>.html">Supprimer</a>
     <?php } ?>
   </legend>
-  <p><?= nl2br(htmlspecialchars($comment['content'])) ?></p>
+  
+  <?php 
+  if (isset($comment['moderationDate'])) { ?>
+    <p><em>Commentaire modéré</em></p>
+  <?php  } 
+  else { 
+  ?>
+    <p><?= nl2br(htmlspecialchars($comment['content'])) ?></p>
+  <?php
+  }
+  ?>
 </fieldset>
 <?php
 }
