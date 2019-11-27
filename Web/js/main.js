@@ -91,5 +91,9 @@
 			breakpoints.on('>large', function() {
 				$intro.prependTo($sidebar);
 			});
-
+	
+	// WYSIWYG interface for editing episodes using Tinymce
+	tinymce.init({
+		selector: 'newsContent'
+	});
 })(jQuery);

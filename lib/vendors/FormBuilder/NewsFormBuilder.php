@@ -26,6 +26,7 @@ class NewsFormBuilder extends FormBuilder
         'name' => 'content',
         'rows' => 8,
         'cols' => 60,
+        'id' => 'newsContent',
         'validators' => [
           new NotNullValidator('Merci de spécifier le contenu de l\'épisode'),
         ],
