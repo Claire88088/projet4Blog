@@ -94,6 +94,6 @@
 	
 	// WYSIWYG interface for editing episodes using Tinymce
 	tinymce.init({
-		selector: 'newsContent'
+		selector: '#newsContent'
 	});
 })(jQuery);
