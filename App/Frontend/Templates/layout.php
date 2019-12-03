@@ -95,11 +95,12 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/jquery.min.js"></script>
-  <script src="js/browser.min.js"></script>
-  <script src="js/breakpoints.min.js"></script>
-  <script src="js/util.js"></script>
-  <script src="js/main.js"></script>
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/browser.min.js"></script>
+  <script src="/js/breakpoints.min.js"></script>
+  <script src="/js/util.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 
 </html>
