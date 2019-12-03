@@ -94,10 +94,11 @@
 	
 	// WYSIWYG interface for editing episodes using Tinymce
 		tinymce.init({
-			selector: 'textarea#newsContent'
+			selector: 'textarea#newsContent',
+			menubar: false
 		});
 
-	// TEST 1 : Forms verifications when changing field
+	// Forms verifications when changing field
 		// CommentForm author must begin by a letter min or MAJ, have letters or '-' characters
 		let regexAuthor = /^[a-zA-Zàâéèêëôöù][a-zA-Z\s-àâéèêëôöù]*[a-zA-Zàâéèêëôöù]$/;
 		
@@ -110,33 +111,4 @@
 			}
 		});
 		
-		
-		
-
-	// TEST 2 : vérification au moment de l'envoi du formulaire et pas au changement de champ : PROBLEME envoi du formulaire malgré le e.prenventDefault
-	/*
-		let regexAuthor = /^[a-zA-Zàâéèêëôöù][a-zA-Z\s-àâéèêëôöù]*[a-zA-Zàâéèêëôöù]$/;
-
-		$('form').on('submit', function(e) {
-			e.preventDefault;
-
-			if (!regexAuthor.test(e.target.author.value)) {
-				alert('Vous devez saisir un nom d\'auteur valide !');
-			}
-
-			if (!regexAuthor.test(e.target.content.value)) {
-				alert('Vous devez saisir un commentaire valide !');
-			}
-		});
-*/
-		// title must begin by a letter min or MAJ
-		/*
-		let regexTitle = /^[a-zA-Zàâéèêëôöù][a-zA-Z0-9àâéèêëôöù]*$/;
-		$('input[name="title"]').on('blur', function(e) {
-			console.log(e.target.value); // test avec regexAuthor
-			if (!regexAuthor.test(author)) {
-				alert('Vous devez saisir un titre valide !');
-			}
-		});
-		*/
 })(jQuery);

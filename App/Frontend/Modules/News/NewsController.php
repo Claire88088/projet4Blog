@@ -30,6 +30,9 @@ class NewsController extends BackController
       if (strlen($news->content()) > $nombreCaracteres)
       {
         $debut = substr($news->content(), 0, $nombreCaracteres);
+        
+        $debut = strips_tags($debut); // enlève les balises HTML du contenu récupéré en BDD (stocké avec balises à cause de TinyMCE) pour éviter les bugs d'affichage des résumés des épisodes
+
         $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
         
         $news->setContent($debut);
@@ -65,8 +68,8 @@ class NewsController extends BackController
     {
       $comment = new Comment([
         'news' => $request->getData('news'),
-        'author' => $request->postData('author'),
-        'content' => $request->postData('content')
+        'author' => htmlspecialchars($request->postData('author')),
+        'content' => htmlspecialchars($request->postData('content'))
       ]);
     }
     else
@@ -97,7 +100,7 @@ class NewsController extends BackController
     // récupération de l'id du comment à signaler
     $id = $request->getData('comment_id');
 
-    // modification de is_reported du comment stocké en BDD : Manager->report($id)
+    // modification de isReported du comment stocké en BDD : Manager->report($id)
     $this->managers->getManagerOf('Comments')->report($id);
 
     // phrase d'info : Le commentaire a bien été signalé
