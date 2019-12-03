@@ -25,7 +25,12 @@ class TextField extends Field
     {
       $widget .= ' id="'.$this->id.'"';
     }
-    
+
+    if (!empty($this->required))
+    {
+    $widget .= ' required="'.$this->required.'"';
+    }
+
     if (!empty($this->cols))
     {
       $widget .= ' cols="'.$this->cols.'"';

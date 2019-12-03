@@ -23,7 +23,12 @@ class StringField extends Field
     {
       $widget .= ' value="'.htmlspecialchars($this->value).'"';
     }
-    
+
+    if (!empty($this->required))
+    {
+    $widget .= ' required="'.$this->required.'"';
+    }
+
     if (!empty($this->maxLength))
     {
       $widget .= ' maxlength="'.$this->maxLength.'"';

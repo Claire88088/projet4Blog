@@ -16,6 +16,7 @@ class NewsFormBuilder extends FormBuilder
         'label' => 'Titre',
         'name' => 'title',
         'maxLength' => 100,
+        'required' => 'required',
         'validators' => [
           new MaxLengthValidator('Le titre spécifié est trop long (100 caractères maximum)', 100),
           new NotNullValidator('Merci de spécifier le titre de l\'épisode'),
@@ -27,6 +28,7 @@ class NewsFormBuilder extends FormBuilder
         'rows' => 8,
         'cols' => 60,
         'id' => 'newsContent',
+        'required' => 'required',
         'validators' => [
           new NotNullValidator('Merci de spécifier le contenu de l\'épisode'),
         ],
