@@ -114,8 +114,8 @@ class NewsController extends BackController
     {
       $comment = new Comment([
         'id' => $request->getData('id'),
-        'author' => $request->postData('author'),
-        'content' => $request->postData('content')
+        'author' => htmlspecialchars($request->postData('author')),
+        'content' => htmlspecialchars($request->postData('content'))
       ]);
     }
     else

@@ -6,7 +6,7 @@ foreach ($listeNews as $news)
     <article class="post">
     <header>
       <div class="title">
-        <h2><a href="news-<?= $news['id'] ?>.html"><?= htmlspecialchars($news['title']) ?></a></h2>
+        <h2><a href="news-<?= $news['id'] ?>.html"><?= $news['title'] ?></a></h2>
         <p></p>
       </div>
       <div class="meta">
@@ -14,7 +14,7 @@ foreach ($listeNews as $news)
       </div>
     </header>
 
-    <p><?= nl2br(htmlspecialchars($news['content'])) ?></p>
+    <p><?= nl2br($news['content']) ?></p>
     
     <footer>
       <ul class="actions">
