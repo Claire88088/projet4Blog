@@ -7,7 +7,7 @@
   <?php
   foreach ($newsList as $news)
   {
-    echo '<tr><td>', htmlspecialchars($news['title']), '</td><td>le ', $news['creationDate']->format('d/m/Y à H\hi'), '</td><td>', ($news['creationDate'] == $news['updateDate'] ? '-' : 'le '.$news['updateDate']->format('d/m/Y à H\hi')), '</td><td><a href="news-update-', $news['id'], '.html"><img src="/images/update.png" alt="Modifier" /></a> <a href="news-delete-', $news['id'], '.html"><img src="/images/delete.png" alt="Supprimer" /></a></td></tr>', "\n";
+    echo '<tr><td>', $news['title'], '</td><td>le ', $news['creationDate']->format('d/m/Y à H\hi'), '</td><td>', ($news['creationDate'] == $news['updateDate'] ? '-' : 'le '.$news['updateDate']->format('d/m/Y à H\hi')), '</td><td><a href="news-update-', $news['id'], '.html"><img src="/images/update.png" alt="Modifier" /></a> <a href="news-delete-', $news['id'], '.html"><img src="/images/delete.png" alt="Supprimer" /></a></td></tr>', "\n";
   }
   ?>
   </table>
@@ -22,7 +22,7 @@
   <?php
   foreach ($reportedCommentsList as $reportedComment)
   {
-    echo '<tr><td>', htmlspecialchars($reportedComment['author']), '</td><td>le ', $reportedComment['creationDate']->format('d/m/Y à H\hi'), '</td><td><a href="comment-moderate-' , $reportedComment['id'], '.html">modérer</a> <a href="comment-delete-', $reportedComment['id'], '.html"><img src="/images/delete.png" alt="Supprimer" /></a></td></tr>', "\n";
+    echo '<tr><td>', $reportedComment['author'], '</td><td>le ', $reportedComment['creationDate']->format('d/m/Y à H\hi'), '</td><td><a href="comment-moderate-' , $reportedComment['id'], '.html">modérer</a> <a href="comment-delete-', $reportedComment['id'], '.html"><img src="/images/delete.png" alt="Supprimer" /></a></td></tr>', "\n";
   }
   ?>
   </table>

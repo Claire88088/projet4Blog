@@ -27,15 +27,16 @@ class NewsController extends BackController
     
     foreach ($listeNews as $news)
     {
-      if (strlen($news->content()) > $nombreCaracteres)
-      {
-        $debut = substr($news->content(), 0, $nombreCaracteres);
-        
-        $debut = strips_tags($debut); // enlève les balises HTML du contenu récupéré en BDD (stocké avec balises à cause de TinyMCE) pour éviter les bugs d'affichage des résumés des épisodes
+      // on enlève les balises HTML permettant la mise en page pour éviter les bugs d'affichage des résumés
+      $contentWithoutTags = strip_tags($news->content());
 
+      if (strlen($contentWithoutTags > $nombreCaracteres))
+      {
+        $debut = substr($contentWithoutTags, 0, $nombreCaracteres);
+        
         $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
         
-        $news->setContent($debut);
+        $news->setContent($debut); 
       }
     }
     
