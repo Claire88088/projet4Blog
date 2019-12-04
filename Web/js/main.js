@@ -94,7 +94,7 @@
 	
 	// WYSIWYG interface for editing episodes using Tinymce
 		tinymce.init({
-			selector: 'textarea#newsContent',
+			selector: '#newsContent',
 			menubar: false
 		});
 

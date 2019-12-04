@@ -23,7 +23,7 @@
 
     <!-- Header -->
     <header id="header">
-      <h1><a href="/">Blog de écrivain</a></h1>
+      <h1>Blog de Jean Forteroche</h1>
       <nav class="links">
         <ul>
           <li><a href="/">Accueil</a></li>
@@ -85,12 +85,6 @@
 
         <?= $content ?>
       </section>
-
-      <!-- Pagination -->
-      <ul class="actions pagination">
-        <li><a href="" class="disabled button large previous">Page précédente</a></li>
-        <li><a href="#" class="button large next">Page suivante</a></li>
-      </ul>
     </div>
   </div>
 
