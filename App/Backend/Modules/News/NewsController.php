@@ -14,6 +14,7 @@ class NewsController extends BackController
   public function executeIndex(HTTPRequest $request)
   {
     $this->page->addVar('title', 'Gestion des épisodes et des commentaires');
+    $this->page->addVar('description', 'Accueil de l\'administration du blog de JeanForteroche');
 
     $manager = $this->managers->getManagerOf('News');
 
@@ -32,6 +33,7 @@ class NewsController extends BackController
     $this->processForm($request);
     
     $this->page->addVar('title', 'Ajout d\'un nouvel épisode');
+    $this->page->addVar('description', 'Formulaire d\'ajout d\'un nouvel épisode');
   }
   
 
@@ -40,6 +42,7 @@ class NewsController extends BackController
     $this->processForm($request);
     
     $this->page->addVar('title', 'Modification d\'un épisode');
+    $this->page->addVar('description', 'Formulaire de modification d\'un épisode');
   }
 
 
@@ -112,6 +115,7 @@ class NewsController extends BackController
   public function executeUpdateComment(HTTPRequest $request)
   {
     $this->page->addVar('title', 'Modification d\'un commentaire');
+    $this->page->addVar('description', 'Formulaire de modification d\'un commentaire');
    
     if ($request->method() == 'POST')
     {

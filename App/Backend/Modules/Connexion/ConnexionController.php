@@ -9,6 +9,7 @@ class ConnexionController extends BackController
   public function executeIndex(HTTPRequest $request)
   {
     $this->page->addVar('title', 'Connexion');
+    $this->page->addVar('description', 'Connexion à l\'administration du blog de Jean Forteroche');
     
     if ($request->postExists('login'))
     {

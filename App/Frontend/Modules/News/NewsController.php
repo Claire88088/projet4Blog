@@ -17,8 +17,9 @@ class NewsController extends BackController
     $nombreNews = $this->app->config()->get('nombre_news');
     $nombreCaracteres = $this->app->config()->get('nombre_caracteres');
     
-    // On ajoute une définition pour le titre.
+    // On ajoute une définition pour le titre et une meta description.
     $this->page->addVar('title', 'Liste des '.$nombreNews.' derniers épisodes');
+    $this->page->addVar('description', 'Présentation des épisodes du dernier roman de Jean Forteroche');
     
     // On récupère le manager des news.
     $manager = $this->managers->getManagerOf('News');
@@ -57,6 +58,7 @@ class NewsController extends BackController
     }
     
     $this->page->addVar('title', $news->title());
+    $this->page->addVar('description', 'Présentation d\'un épisode du dernier roman de Jean Forteroche avec ses commentaires');
     $this->page->addVar('news', $news);
     $this->page->addVar('comments', $this->managers->getManagerOf('Comments')->getListOf($news->id()));
   } 
@@ -94,6 +96,7 @@ class NewsController extends BackController
     $this->page->addVar('comment', $comment);
     $this->page->addVar('form', $form->createView());
     $this->page->addVar('title', 'Ajout d\'un commentaire');
+    $this->page->addVar('description', 'Commentaire de l\'épisode');
   }
 
   public function executeReportComment(HTTPRequest $request)
