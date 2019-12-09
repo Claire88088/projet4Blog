@@ -49,11 +49,12 @@ class NewsController extends BackController
    */
   public function processForm(HTTPRequest $request)
   { 
+    // Création de News avec des valeurs ou pas selon si le formulaire a été envoyé ou non et si la News est nouvelle ou non
     if ($request->method() == 'POST')
     {
       $news = new News([
-        'author' => $request->postData('author'),
-        'title' => $request->postData('title'),
+        'author' => htmlspecialchars($request->postData('author')),
+        'title' => htmlspecialchars($request->postData('title')),
         'content' => $request->postData('content')
       ]);
 
@@ -75,11 +76,13 @@ class NewsController extends BackController
       }
     }
 
+    // Création d'un formulaire d'ajout/modification de news
     $formBuilder = new NewsFormBuilder($news);
     $formBuilder->build();
 
     $form = $formBuilder->form();
 
+    // Utilisation du gestionnaire de formulaire pour traiter les données récupérées via le formulaire
     $formHandler = new FormHandler($form, $this->managers->getManagerOf('News'), $request);
 
     if ($formHandler->process())
