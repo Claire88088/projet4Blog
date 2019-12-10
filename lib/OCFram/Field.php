@@ -94,12 +94,9 @@ abstract class Field
     }
   }
 
-  public function setRequired($required)
+  public function setRequired()
   {
-    if (is_string($required))
-    {
-      $this->required = $required;
-    }
+    $this->required = true;
   }
 
   public function setValidators(array $validators)
