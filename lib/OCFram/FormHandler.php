@@ -16,8 +16,10 @@ class FormHandler
 
   public function process()
   {
+    //var_dump('dans process du gestionnaire de formulaire');
     if($this->request->method() == 'POST' && $this->form->isValid())
     {
+      //var_dump('le formulaire a été envoyé');
       $this->manager->save($this->form->entity());
 
       return true;

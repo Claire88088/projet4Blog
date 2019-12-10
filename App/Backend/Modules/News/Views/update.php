@@ -1,5 +1,5 @@
 <h2>Modifier un épisode</h2>
-<form action="#" method="post">
+<form id ="updateForm" action="#" method="post">
   <p>
     <?= $form ?>
     

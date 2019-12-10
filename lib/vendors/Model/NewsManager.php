@@ -43,6 +43,7 @@ abstract class NewsManager extends Manager
    */
   public function save(News $news)
   {
+    //var_dump('dans save du manager de news');
     if ($news->isValid())
     {
       $news->isNew() ? $this->add($news) : $this->modify($news);
