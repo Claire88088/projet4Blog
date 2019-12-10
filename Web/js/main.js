@@ -4,7 +4,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-(function($) {
+$(document).ready(function() {
 
 	var	$window = $(window),
 		$body = $('body'),
@@ -92,10 +92,25 @@
 				$intro.prependTo($sidebar);
 			});
 	
-	// WYSIWYG interface for editing episodes using Tinymce
-		tinymce.init({
+	// WYSIWYG interface for editing episodes using TinyMCE
+		tinymce.init({ 
 			selector: '#newsContent',
-			menubar: false
+			menubar: false,
+			setup: function (editor) {
+				editor.on('change', function (e) {
+					//editor.save();
+					tinymce.triggerSave();
+				});
+			}
+		});
+	
+		// Debug TinyMCE : no required attribute possibility on textarea for insert a news 
+		// Adding an alert window to inform the user that the textarea content is required
+		$('#insertButton').on('click', function(e) {
+			if (($('input[name="title"]').val()) && !($('textarea[name="content"]').val()))
+			{
+				alert('Veuillez renseigner le champ "Contenu"');
+			}	
 		});
 
 	// Forms verifications when changing field
@@ -110,5 +125,4 @@
 				alert('Vous devez saisir un nom d\'auteur valide !');
 			}
 		});
-		
-})(jQuery);
+});
